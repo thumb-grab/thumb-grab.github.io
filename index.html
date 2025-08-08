@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4E3X191XQJ"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F7TG1VM0HD"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-4E3X191XQJ');
+    gtag('config', 'G-F7TG1VM0HD');
   </script>
   <meta name="google-site-verification" content="UsFvbhANqyC8jCMK5xVGExuVAyHArTABsEh8o409214" />
-  <link href='https://thumbgrab.online/' rel='canonical'/>
+  <link href='https://ytdfree.online/' rel='canonical'/>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YouTube Thumbnail Downloader Free Online</title>
   <link rel="icon" type="image/png" href="/icon.png">
   <meta content='Download high-quality YouTube thumbnails in HD, Full HD, and SD with our free Thumbnail Downloader tool. Fast, easy, and reliable!' name='description'/>
-  <meta name="keywords" content="YouTube Thumbnail Downloader, ThumbGrab, free thumbnail downloader, YouTube, thumbnail generator, screenshots, image generator">
+  <meta name="keywords" content="YouTube Thumbnail Downloader, YTDFree.Online, free thumbnail downloader, YouTube, thumbnail generator, screenshots, image generator">
   <meta name="robots" content="index, follow">
   <meta name="revisit-after" content="2 days">
   <meta name="language" content="English">
@@ -24,8 +24,8 @@
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ThumbGrab",
-    "url": "https://thumbgrab.online",
+    "name": "YTDFree.Online",
+    "url": "https://ytdfree.online",
     "description": "Download high-quality YouTube thumbnails in HD, Full HD, and SD with our free Thumbnail Downloader tool. Fast, easy, and reliable!"
   }
   </script>
@@ -271,6 +271,9 @@
       max-width: 600px;
       margin: 0 auto;
     }
+    #hidden_div {
+      margin-top: 2rem;
+    }
     footer {
       background: var(--dark-color);
       color: var(--light-color);
@@ -280,11 +283,36 @@
     }
     .footer-container {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       gap: 24px;
       margin-bottom: 24px;
     }
-    .footer-container a {
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: 800;
+    }
+    .footer-logo img {
+      height: 32px;
+      width: auto;
+    }
+    .footer-logo span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
       color: #fff;
       text-decoration: none;
     }
@@ -293,6 +321,13 @@
       padding-top: 20px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       font-size: 13px;
+    }
+    .copyright a {
+      color: #fff;
+      text-decoration: none;
+    }
+    .copyright a:hover {
+      text-decoration: underline;
     }
     .bottom-buttons {
       position: fixed;
@@ -327,6 +362,31 @@
     .scroll-to-top.show {
       opacity: 1;
       visibility: visible;
+    }
+    .social-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 2rem;
+      margin-bottom: 4rem;
+    }
+    .social-button {
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .social-button:hover {
+      background: var(--reverse-gradient);
+      transform: scale(1.1);
     }
     .modal {
       display: none;
@@ -431,11 +491,11 @@
       }
     }
     @media (max-width: 576px) {
-      .logo {
+      .logo, .footer-logo {
         font-size: 20px;
         margin-left: 0;
       }
-      .logo img {
+      .logo img, .footer-logo img {
         height: 28px;
       }
       .mobile-menu-btn {
@@ -454,7 +514,7 @@
         left: 16px;
         justify-content: flex-end;
       }
-      .theme-toggle, .scroll-to-top {
+      .theme-toggle, .scroll-to-top, .social-button {
         width: 32px;
         height: 32px;
         font-size: 16px;
@@ -466,8 +526,8 @@
   <header>
     <div class="header-container">
       <a href="/" class="logo">
-        <img src="/icon.png" alt="ThumbGrab Logo">
-        <span>ThumbGrab</span>
+        <img src="/icon.png" alt="YTDFree.Online Logo">
+        <span>YTDFree.Online</span>
       </a>
       <button id="mobile-menu-btn" class="mobile-menu-btn">☰</button>
       <nav id="mobile-menu">
@@ -497,15 +557,22 @@
       </form>
     </div>
     <div class="loading" id="loading">Loading thumbnails...</div>
-    <div class="addthis_inline_share_toolbox mb-8"></div>
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://ytdfree.online" target="_blank" class="social-button" title="Share on Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https://ytdfree.online&text=Download YouTube thumbnails with YTDFree.Online!" target="_blank" class="social-button" title="Share on X">
+        <i class="fab fa-x-twitter"></i>
+      </a>
+    </div>
     <div id="hidden_div">
       <div id="thumbnails" class="grid grid-cols-1 gap-6 justify-items-center"></div>
     </div>
     <!-- Article Content -->
     <section class="py-12 text-left max-w-2xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">Download YouTube Thumbnails Easily with ThumbGrab</h2>
+      <h2 class="text-2xl font-bold mb-4">Download YouTube Thumbnails Easily with YTDFree.Online</h2>
       <p class="mb-4">Looking to grab high-quality thumbnail images from YouTube videos? Our <strong>YouTube Thumbnail Downloader</strong> lets you download thumbnails in various resolutions, including Full HD (1080p), HD (720p), SD, and smaller sizes. Whether you're creating presentations, animations, or other creative projects, this tool supports YouTube formats like HD, HQ, 1080p, and 4K, making it a versatile solution for your needs.</p>
-      <h3 class="text-xl font-semibold mb-3">Why Use ThumbGrab?</h3>
+      <h3 class="text-xl font-semibold mb-3">Why Use YTDFree.Online?</h3>
       <p class="mb-4">Thumbnails are eye-catching visuals that summarize a video’s content. With our tool, you can:</p>
       <ul class="list-disc pl-6 mb-4">
         <li><strong>Access thumbnails instantly</strong>: Save time by downloading thumbnails for your projects.</li>
@@ -513,10 +580,10 @@
         <li><strong>Choose your resolution</strong>: Select from multiple sizes to fit your specific requirements.</li>
       </ul>
       <p class="mb-4">This tool is ideal for content creators, marketers, and designers who need quick access to YouTube video thumbnails without hassle.</p>
-      <h3 class="text-xl font-semibold mb-3">How to Use ThumbGrab</h3>
+      <h3 class="text-xl font-semibold mb-3">How to Use YTDFree.Online</h3>
       <p class="mb-4">Downloading a thumbnail is simple and user-friendly. Follow these steps:</p>
       <ol class="list-decimal pl-6 mb-4">
-        <li><strong>Copy the YouTube video URL</strong>: Find the YouTube video with the thumbnail you want and copy its link.</li>
+        <li><strong>Copy the YouTube URL</strong>: Go to the YouTube video with the thumbnail you want and copy its link.</li>
         <li><strong>Paste the URL</strong>: Go to our website and paste the link into the provided input box.</li>
         <li><strong>Select your thumbnail</strong>: The tool instantly generates thumbnails in various sizes. Choose the resolution you need.</li>
         <li><strong>Download the image</strong>: Click the download button, and the thumbnail will save to your device.</li>
@@ -529,7 +596,7 @@
         <li><strong>Use responsibly</strong>: Avoid repurposing thumbnails in a way that violates copyright laws.</li>
       </ul>
       <h3 class="text-xl font-semibold mb-3">Device Compatibility</h3>
-      <p class="mb-4">ThumbGrab works seamlessly across most devices, including:</p>
+      <p class="mb-4">YTDFree.Online works seamlessly across most devices, including:</p>
       <ul class="list-disc pl-6 mb-4">
         <li><strong>Android devices</strong>: Fully compatible, allowing easy downloads and saving of thumbnails.</li>
         <li><strong>Desktops and laptops</strong>: Works on Windows, macOS, and Linux with any modern browser.</li>
@@ -551,29 +618,35 @@
       </ul>
       <p class="mb-4">By creating a unique version of the thumbnail, you can enhance its SEO value and avoid duplicate content issues.</p>
       <h3 class="text-xl font-semibold mb-3">Start Downloading Thumbnails Today!</h3>
-      <p class="mb-4">ThumbGrab is a fast, free, and reliable tool for grabbing high-quality thumbnails. Whether you’re a content creator, designer, or marketer, this tool simplifies the process of accessing YouTube thumbnails for your projects. Just remember to use thumbnails responsibly and consider editing them for SEO and copyright purposes.</p>
+      <p class="mb-4">YTDFree.Online is a fast, free, and reliable tool for grabbing high-quality thumbnails. Whether you’re a content creator, designer, or marketer, this tool simplifies the process of accessing YouTube thumbnails for your projects. Just remember to use thumbnails responsibly and consider editing them for SEO and copyright purposes.</p>
       <p>Try it now and elevate your creative projects with stunning YouTube thumbnails!</p>
     </section>
   </main>
   <footer>
     <div class="footer-container container">
-      <a href="/" class="no-hover">Home</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms and Conditions</a>
-      <a href="/disclaimer">Disclaimer</a>
+      <a href="/" class="footer-logo">
+        <img src="/icon.png" alt="YTDFree.Online Logo">
+        <span>YTDFree.Online</span>
+      </a>
+      <div class="footer-links">
+        <a href="/" class="no-hover">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms and Conditions</a>
+        <a href="/disclaimer">Disclaimer</a>
+      </div>
     </div>
     <div class="copyright">
-      <p>&copy; <script>document.write(new Date().getFullYear())</script> ThumbGrab</p>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> <a href="https://ytdfree.online">YTDFree.Online</a> All Rights Reserved</p>
     </div>
   </footer>
   <!-- Modals for Navbar -->
   <div id="about-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('about-modal')">✕</button>
-      <h2 class="text-2xl font-bold mb-4">About ThumbGrab</h2>
-      <p class="mb-4">ThumbGrab is a free, user-friendly tool designed to help you quickly download high-quality thumbnails from any YouTube video. Created with content creators, marketers, and designers in mind, our app supports multiple resolutions, including Full HD (1080p), HD (720p), and SD, making it perfect for presentations, video editing, or graphic design projects.</p>
+      <h2 class="text-2xl font-bold mb-4">About YTDFree.Online</h2>
+      <p class="mb-4">YTDFree.Online is a free, user-friendly tool designed to help you quickly download high-quality thumbnails from any YouTube video. Created with content creators, marketers, and designers in mind, our app supports multiple resolutions, including Full HD (1080p), HD (720p), and SD, making it perfect for presentations, video editing, or graphic design projects.</p>
       <p class="mb-4">We aim to provide a fast, reliable, and accessible solution for all your thumbnail needs, with compatibility across Android, desktops, and laptops. Our mission is to simplify your creative workflow while ensuring you use thumbnails responsibly by respecting copyright guidelines.</p>
       <p>Explore our tool today and elevate your projects with stunning visuals!</p>
     </div>
@@ -581,7 +654,7 @@
   <div id="features-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('features-modal')">✕</button>
-      <h2 class="text-2xl font-bold mb-4">Features of ThumbGrab</h2>
+      <h2 class="text-2xl font-bold mb-4">Features of YTDFree.Online</h2>
       <p class="mb-4">Our tool is packed with features to make downloading YouTube thumbnails effortless:</p>
       <ul class="list-disc pl-6 mb-4">
         <li><strong>Multiple Resolutions</strong>: Download thumbnails in Full HD (1080p), HD (720p), SD, or smaller sizes to suit your needs.</li>
@@ -596,7 +669,7 @@
   <div id="how-to-use-modal" class="modal">
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('how-to-use-modal')">✕</button>
-      <h2 class="text-2xl font-bold mb-4">How to Use ThumbGrab</h2>
+      <h2 class="text-2xl font-bold mb-4">How to Use YTDFree.Online</h2>
       <p class="mb-4">Downloading YouTube thumbnails is quick and easy with our tool. Follow these steps:</p>
       <ol class="list-decimal pl-6 mb-4">
         <li><strong>Copy the YouTube URL</strong>: Go to the YouTube video with the thumbnail you want and copy its link.</li>
@@ -621,14 +694,13 @@
       <h3 class="text-lg font-semibold mb-2">What resolutions are available?</h3>
       <p class="mb-4">You can download thumbnails in Full HD (1280x720), HD (720p), SD, and smaller sizes, depending on the video’s availability.</p>
       <h3 class="text-lg font-semibold mb-2">Do I need to pay to use this tool?</h3>
-      <p>No, ThumbGrab is completely free with no hidden fees!</p>
+      <p>No, YTDFree.Online is completely free with no hidden fees!</p>
     </div>
   </div>
   <div class="bottom-buttons">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-regular fa-sun"></i></button>
     <button class="scroll-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
   </div>
-  <script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5c98f50a092025d4"></script>
   <script>
     // Global functions for onclick and onsubmit
     function toggleMobileMenu(event) {
