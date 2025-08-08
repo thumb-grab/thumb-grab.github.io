@@ -368,7 +368,7 @@
       gap: 16px;
       justify-content: center;
       margin-top: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 0.5rem;
     }
     .social-button {
       background: var(--gradient);
@@ -484,6 +484,9 @@
         width: 95%;
         padding: 16px;
       }
+      .article-title {
+        font-size: 1.125rem; /* text-lg */
+      }
     }
     @media (min-width: 769px) {
       #mobile-menu {
@@ -519,6 +522,15 @@
         height: 32px;
         font-size: 16px;
       }
+      .social-buttons {
+        margin-bottom: 0.25rem;
+      }
+      #hidden_div {
+        margin-top: 0.5rem;
+      }
+      .article-section {
+        padding-top: 0.25rem;
+      }
     }
   </style>
 </head>
@@ -533,7 +545,7 @@
       <nav id="mobile-menu">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="#" onclick="openModal('about-modal'); return false;">About</a></li>
+          <li><a href="/about">About</a></li>
           <li><a href="#" onclick="openModal('features-modal'); return false;">Features</a></li>
           <li><a href="#" onclick="openModal('how-to-use-modal'); return false;">How to Use</a></li>
           <li><a href="#" onclick="openModal('faq-modal'); return false;">FAQ</a></li>
@@ -569,8 +581,8 @@
       <div id="thumbnails" class="grid grid-cols-1 gap-6 justify-items-center"></div>
     </div>
     <!-- Article Content -->
-    <section class="py-12 text-left max-w-2xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">Download YouTube Thumbnails Easily with YTDFree.Online</h2>
+    <section class="pt-2 pb-12 text-left max-w-2xl mx-auto article-section">
+      <h2 class="text-xl font-bold mb-4 whitespace-nowrap article-title">Download YouTube Thumbnails Easily with YTDFree.Online</h2>
       <p class="mb-4">Looking to grab high-quality thumbnail images from YouTube videos? Our <strong>YouTube Thumbnail Downloader</strong> lets you download thumbnails in various resolutions, including Full HD (1080p), HD (720p), SD, and smaller sizes. Whether you're creating presentations, animations, or other creative projects, this tool supports YouTube formats like HD, HQ, 1080p, and 4K, making it a versatile solution for your needs.</p>
       <h3 class="text-xl font-semibold mb-3">Why Use YTDFree.Online?</h3>
       <p class="mb-4">Thumbnails are eye-catching visuals that summarize a video’s content. With our tool, you can:</p>
@@ -768,13 +780,10 @@
       const loading = document.getElementById('loading');
       const thumbnailDiv = document.getElementById('hidden_div');
       const thumbnails = document.getElementById('thumbnails');
-      // Prevent re-running if thumbnails already exist
-      if (thumbnails.innerHTML && thumbnails.querySelector('.thumbnail-img')) {
-        console.log('Thumbnails already loaded, skipping generation');
-        return;
-      }
       if (!videoURL) {
         thumbnails.innerHTML = '<div class="error-message">Please enter a YouTube URL.</div>';
+        document.getElementById('technicalarpvid').value = '';
+        thumbnailDiv.scrollIntoView({ behavior: 'smooth' });
         return;
       }
       button.disabled = true;
@@ -820,11 +829,14 @@
         thumbnails.innerHTML = '<div class="error-message">It seems like your URL has an error. Please check and try again.</div>';
         button.disabled = false;
         loading.classList.remove('visible');
+        document.getElementById('technicalarpvid').value = '';
+        thumbnailDiv.scrollIntoView({ behavior: 'smooth' });
       }
     }
     function appendThumbnails(videoID, hasMaxRes) {
       console.log('Appending thumbnails for video ID:', videoID, 'hasMaxRes:', hasMaxRes);
       const thumbnails = document.getElementById('thumbnails');
+      const thumbnailDiv = document.getElementById('hidden_div');
       let html = `
         <p class="text-lg font-semibold mb-4 text-center max-w-2xl mx-auto">Here are your thumbnails! Click an image to open, then right-click and select "Save Image As..." to download.</p>
       `;
@@ -860,6 +872,8 @@
       `;
       console.log('Setting thumbnails HTML:', html);
       thumbnails.innerHTML = html;
+      document.getElementById('technicalarpvid').value = '';
+      thumbnailDiv.scrollIntoView({ behavior: 'smooth' });
     }
     // Initialize on DOM load
     document.addEventListener('DOMContentLoaded', () => {
