@@ -69,6 +69,7 @@
       flex-direction: column;
       min-height: 100vh;
       align-items: center;
+      overflow-x: hidden;
     }
     body::-webkit-scrollbar {
       display: none;
@@ -225,6 +226,7 @@
       position: relative;
       display: inline-block;
       margin: 0 auto;
+      max-width: 100%;
     }
     .thumbnail-img {
       max-width: 100%;
@@ -433,6 +435,14 @@
     .modal-close:hover {
       background: var(--reverse-gradient);
     }
+    .article-section {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    #thumbnails {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
     @media (max-width: 768px) {
       .container {
         padding: 16px;
@@ -505,8 +515,12 @@
       .mobile-menu-btn {
         margin-right: 0;
       }
+      .input-container {
+        max-width: 100%;
+      }
       .input-container input[type="text"] {
-        padding: 1rem 6rem 1rem 1rem;
+        padding: 0.75rem 5rem 0.75rem 0.75rem;
+        font-size: 0.875rem;
       }
       .input-container input[type="submit"] {
         padding: 0.5rem 1rem;
@@ -524,13 +538,38 @@
         font-size: 16px;
       }
       .social-buttons {
+        gap: 8px;
+        margin-top: 1rem;
         margin-bottom: 0.25rem;
       }
       #hidden_div {
-        margin-top: 0.5rem;
+        margin-top: 1rem;
       }
       .article-section {
         padding-top: 0.25rem;
+        padding-bottom: 8px;
+      }
+      .article-title {
+        font-size: 1rem;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+      .article-section p, .article-section li {
+        font-size: 0.875rem;
+      }
+      #thumbnails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .thumbnail-container {
+        width: 100%;
+        max-width: 300px;
+      }
+      .thumbnail-img {
+        width: 100%;
+        max-width: 300px;
       }
     }
   </style>
@@ -583,7 +622,7 @@
     </div>
     <!-- Article Content -->
     <section class="pt-2 pb-12 text-left max-w-2xl mx-auto article-section">
-      <h2 class="text-xl font-bold mb-4 whitespace-nowrap article-title">Download YouTube Thumbnails Easily with YTDFree.Online</h2>
+      <h2 class="text-xl font-bold mb-4 article-title">Download YouTube Thumbnails Easily with YTDFree.Online</h2>
       <p class="mb-4">Looking to grab high-quality thumbnail images from YouTube videos? Our <strong>YouTube Thumbnail Downloader</strong> lets you download thumbnails in various resolutions, including Full HD (1080p), HD (720p), SD, and smaller sizes. Whether you're creating presentations, animations, or other creative projects, this tool supports YouTube formats like HD, HQ, 1080p, and 4K, making it a versatile solution for your needs.</p>
       <h3 class="text-xl font-semibold mb-3">Why Use YTDFree.Online?</h3>
       <p class="mb-4">Thumbnails are eye-catching visuals that summarize a video’s content. With our tool, you can:</p>
