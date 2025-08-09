@@ -10,6 +10,16 @@ Disallow: /blog-page-3
 Disallow: /blog-page-4
 Disallow: /blog-page-5
 Allow: /
+Allow: /blog-article-1
+Allow: /blog-article-2
+Allow: /blog-article-3
+Allow: /blog-article-4
+Allow: /blog-article-5
+Allow: /blog-article-6
+Allow: /blog-article-7
+Allow: /blog-article-8
+Allow: /blog-article-9
+Allow: /blog-article-10
 Allow: /how-to-analyze-competitor-thumbnails
 Allow: /using-color-psychology-in-thumbnail-design
 Allow: /optimizing-thumbnails-for-mobile-viewers
