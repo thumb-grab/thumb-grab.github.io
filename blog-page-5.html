@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="google-site-verification" content="OXrLNGo0koBx8iTSQu5pVuUPJof0mBqpHToXmpSx2G8" />
@@ -82,6 +43,38 @@
       "@id": "https://ytdfree.online/blog-page-5"
     }
   }
+  </script>
+  <script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+      if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+        try {
+          var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+          var firstSheetName = workbook.SheetNames[0];
+          var worksheet = workbook.Sheets[firstSheetName];
+          var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+          var filteredData = jsonData.filter(row => row.some(filledCell));
+          var headerRowIndex = filteredData.findIndex((row, index) =>
+            row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+          );
+          if (headerRowIndex === -1 || headerRowIndex > 25) {
+            headerRowIndex = 0;
+          }
+          var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+          csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+          return csv;
+        } catch (e) {
+          console.error(e);
+          return "";
+        }
+      }
+      return gk_fileData[filename] || "";
+    }
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -256,6 +249,50 @@
       background: var(--reverse-gradient);
       color: #fff;
     }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: var(--light-color);
+      color: var(--text-color);
+      max-width: 800px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 24px;
+      border-radius: var(--border-radius);
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--gradient);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+    .modal-close:hover {
+      background: var(--reverse-gradient);
+    }
     footer {
       background: var(--dark-color);
       color: var(--light-color);
@@ -428,6 +465,10 @@
       .article-content p {
         font-size: 0.95rem;
       }
+      .modal-content {
+        width: 95%;
+        padding: 16px;
+      }
     }
     @media (min-width: 769px) {
       #mobile-menu {
@@ -568,6 +609,62 @@
   <div class="bottom-buttons">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fa-regular fa-sun"></i></button>
     <button class="scroll-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+  </div>
+  <!-- Modals for Navbar -->
+  <div id="about-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('about-modal')">✕</button>
+      <h2 class="text-2xl font-bold mb-4">About YTDFree.Online</h2>
+      <p class="mb-4">YTDFree.Online is a free, user-friendly tool designed to help you quickly download high-quality thumbnails from any YouTube video. Created with content creators, marketers, and designers in mind, our app supports multiple resolutions, including Full HD (1080p), HD (720p), and SD, making it perfect for presentations, video editing, or graphic design projects.</p>
+      <p class="mb-4">We aim to provide a fast, reliable, and accessible solution for all your thumbnail needs, with compatibility across Android, desktops, and laptops. Our mission is to simplify your creative workflow while ensuring you use thumbnails responsibly by respecting copyright guidelines.</p>
+      <p>Explore our tool today and elevate your projects with stunning visuals!</p>
+    </div>
+  </div>
+  <div id="features-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('features-modal')">✕</button>
+      <h2 class="text-2xl font-bold mb-4">Features of YTDFree.Online</h2>
+      <p class="mb-4">Our tool is packed with features to make downloading YouTube thumbnails effortless:</p>
+      <ul class="list-disc pl-6 mb-4">
+        <li><strong>Multiple Resolutions</strong>: Download thumbnails in Full HD (1080p), HD (720p), SD, or smaller sizes to suit your needs.</li>
+        <li><strong>Instant Generation</strong>: Paste a YouTube URL, and thumbnails are generated in seconds.</li>
+        <li><strong>User-Friendly Interface</strong>: Simple design makes it easy for anyone to use, no technical skills required.</li>
+        <li><strong>Device Compatibility</strong>: Works on Android, desktops, and laptops; limited functionality on iPhones unless jailbroken.</li>
+        <li><strong>Free to Use</strong>: No hidden costs or subscriptions—just paste and download!</li>
+      </ul>
+      <p>Whether you're creating marketing materials or editing videos, our tool provides the flexibility and speed you need.</p>
+    </div>
+  </div>
+  <div id="how-to-use-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('how-to-use-modal')">✕</button>
+      <h2 class="text-2xl font-bold mb-4">How to Use YTDFree.Online</h2>
+      <p class="mb-4">Downloading YouTube thumbnails is quick and easy with our tool. Follow these steps:</p>
+      <ol class="list-decimal pl-6 mb-4">
+        <li><strong>Copy the YouTube URL</strong>: Go to the YouTube video with the thumbnail you want and copy its link.</li>
+        <li><strong>Paste the URL</strong>: Visit our website and paste the link into the input box.</li>
+        <li><strong>Generate Thumbnails</strong>: The tool will instantly display thumbnails in various sizes (e.g., Full HD, HD, SD).</li>
+        <li><strong>Download</strong>: Click on a thumbnail to open it, then right-click and select "Save Image As..." to download it to your device.</li>
+      </ol>
+      <p class="mb-4">For Android users, images save directly. iPhone users may need additional steps due to iOS restrictions, but jailbroken devices work seamlessly.</p>
+      <p>Try it now and see how simple it is to get high-quality thumbnails!</p>
+    </div>
+  </div>
+  <div id="faq-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('faq-modal')">✕</button>
+      <h2 class="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+      <h3 class="text-lg font-semibold mb-2">Is downloading YouTube thumbnails legal?</h3>
+      <p class="mb-4">Yes, downloading thumbnails is legal, but they are copyrighted by the video creator. Always seek permission before reusing them for commercial or public purposes.</p>
+      <h3 class="text-lg font-semibold mb-2">Can I use this tool on my phone?</h3>
+      <p class="mb-4">Absolutely! The tool works on Android devices and desktops/laptops. iPhone users may face restrictions unless using a jailbroken device.</p>
+      <h3 class="text-lg font-semibold mb-2">Are downloaded thumbnails SEO-friendly?</h3>
+      <p class="mb-4">Unedited thumbnails are not SEO-friendly as Google indexes them as duplicates. Edit them with tools like Photoshop or Canva to make them unique and optimize with keyword-rich file names and alt text.</p>
+      <h3 class="text-lg font-semibold mb-2">What resolutions are available?</h3>
+      <p class="mb-4">You can download thumbnails in Full HD (1280x720), HD (720p), SD, and smaller sizes, depending on the video’s availability.</p>
+      <h3 class="text-lg font-semibold mb-2">Do I need to pay to use this tool?</h3>
+      <p>No, YTDFree.Online is completely free with no hidden fees!</p>
+    </div>
   </div>
   <script>
     function toggleMobileMenu(event) {
